@@ -1,0 +1,21 @@
+{
+    "bannerTitle": "Chào mọi người, tôi là Hà Anh Thảo",
+    "bannerDescription": "Tôi là một nhà phát triển web với kinh nghiệm phát triển ứng dụng web với React.js, Nodejs, Express và Cloud Technologies. Tôi thực sự quan tâm đến việc học các công nghệ mới và triển khai chúng trong các dự án của mình. Tôi là một cá nhân năng động và chăm chỉ, luôn sẵn sàng học hỏi những điều mới và làm việc theo nhóm.",
+    "viewResume": "Xem hồ sơ",
+    "techTitle": "Công nghệ",
+    "techDescription": "Danh sách các tool và công nghệ yêu thích mà tôi thường sử dụng.",
+    "techViewFull": "Xem thêm",
+    "educationTitle": "Giáo dục",
+    "educationIuhTitle": "Trường Đại học Công nghiệp TP.HCM",
+    "educationIuhDescription": "Kỹ sư phần mềm",
+    "educationIuhDuration": "10/2020 - nay",
+    "educationIuhGrade": "Điểm A",
+    "projectTitle": "Dự án",
+    "projectChatTitle": "Lola - Chat web",
+    "projectChatDescription": "Trang web cho phép người dùng chat 1-1, chat nhóm, quản lý nhóm, quản lý bạn bè, quản lý thông tin cá nhân. Người dùng có thể gửi sticker, emoji, vị trí, tệp, hình ảnh, video, preview file, preview link,...",
+    "projectMovieTitle": "WMovies - Web xem phim",
+    "projectMovieDescription": "Trang web cho phép người dùng xem phim, quản lý phim yêu thích, quản lý thông tin cá nhân, lưu phim đã xem gần đây và đăng nhập bằng tài khoản google.",
+    "projectPortfolioTitle": "Portfolio - Trang web cá nhân",
+    "projectPortfolioDescription": "Trang web cá nhân giới thiệu bản thân, kinh nghiệm làm việc, dự án đã tham gia, công nghệ sử dụng, học vấn, liên hệ.",
+    "footerTitle": "Liên lạc với tôi!"
+}

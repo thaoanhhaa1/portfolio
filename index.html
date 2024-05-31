@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hà Anh Thảo - FE Dev</title>
     <link rel="stylesheet" href="./style.css">
+    <script src="https://unpkg.com/i18next/i18next.js"></script>
+    <script src="https://unpkg.com/i18next-http-backend/i18nextHttpBackend.js"></script>
+    <script src="https://unpkg.com/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.js"></script>
 </head>
 
 <body>
@@ -15,6 +18,12 @@
                 <h2 class="logo">
                     <a href="" class="logo__link">HaAnhThao</a>
                 </h2>
+                <div>
+                    <div class="languages">
+                        <span class="vietnamese">Tiếng Việt</span>
+                        <span class="english active">English</span>
+                    </div>
+                </div>
             </div>
         </header>
 
@@ -154,7 +163,7 @@
                         <h3 class="header__title">Projects</h3>
                     </div>
                     <div class="project__list">
-                        <div class="project__item">
+                        <div data-project="Chat" class="project__item">
                             <div class="project__item__img">
                                 <img src="./assets/images/chat-app-project.jpeg" alt="">
                             </div>
@@ -193,7 +202,7 @@
                                 </a>
                             </div>
                         </div>
-                        <div class="project__item">
+                        <div data-project="Movie" class="project__item">
                             <div class="project__item__img">
                                 <img src="./assets/images/movie-project.jpeg" alt="">
                             </div>
@@ -229,6 +238,33 @@
                                 </a>
                             </div>
                         </div>
+                        <div data-project="Portfolio" class="project__item">
+                            <div class="project__item__img">
+                                <img src="./assets/images/portfolio-project.jpeg" alt="">
+                            </div>
+                            <div class="project__item__content">
+                                <h4 class="project__item__title">Portfolio</h4>
+                                <p class="project__item__desc line-clamp-3">Some information about me.</p>
+                                <div class="project__item__techs">
+                                    <img src="./assets/svgs/html.svg" alt="" class="project__item__tech">
+                                    <img src="./assets/svgs/css.svg" alt="" class="project__item__tech">
+                                    <img src="./assets/svgs/js.svg" alt="" class="project__item__tech">
+                                    <img src="./assets/svgs/i18next.svg" alt="" class="project__item__tech">
+                                </div>
+                            </div>
+                            <div class="project__item__footer">
+                                <a href="https://github.com/thaoanhhaa1/portfolio" target="_blank"
+                                    class="project__item__view">
+                                    <img src="./assets/svgs/logo-github.svg" alt="">
+                                    <span>FE</span>
+                                </a>
+                                <a href="https://thaoanhhaa1.github.io/portfolio/" target="_blank"
+                                    class="project__item__view project__item__view--demo">
+                                    <img src="./assets/images/right-arrow.png" alt="">
+                                    <span>DEMO</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -257,6 +293,8 @@
                 </div>
             </div>
         </footer>
+
+        <script src="./main.js"></script>
     </main>
 </body>
 

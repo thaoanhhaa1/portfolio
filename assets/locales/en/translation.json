@@ -1,0 +1,21 @@
+{
+    "bannerTitle": "Hi all, I'm Ha Anh Thao",
+    "bannerDescription": "I am a passionate web developer with experience developing web applications with React.js, Nodejs, Express and Cloud Technologies. I'm really interested in learning new technologies and implementing them in my projects. I am a motivated and hard-working individual, always willing to learn new things and work in a team.",
+    "viewResume": "View my resume",
+    "techTitle": "Tech Stack",
+    "techDescription": "A list of my favorite tools and technologies that I use on a regular basis.",
+    "techViewFull": "See full my tech",
+    "educationTitle": "EDUCATION",
+    "educationIuhTitle": "Industrial University of Ho Chi Minh City",
+    "educationIuhDescription": "Software Engineer",
+    "educationIuhDuration": "October 2020 - current",
+    "educationIuhGrade": "GRADE A",
+    "projectTitle": "PROJECTS",
+    "projectChatTitle": "Lola - Chat web",
+    "projectChatDescription": "The website allows users to chat 1-1, chat in groups, manage groups, manage friends, and manage personal information. Users can send stickers, emoji, location, files, images, videos, preview files, preview links,...",
+    "projectMovieTitle": "WMovies - View Movie",
+    "projectMovieDescription": "The website allows users to watch movies, manage favorite movies, manage personal information, save recently watched movies, and log in with a google account.",
+    "projectPortfolioTitle": "Portfolio - Personal Website",
+    "projectPortfolioDescription": "The website introduces information about me, my resume, my projects, my tech stack, and how to contact me.",
+    "footerTitle": "Reach Out to me!"
+}

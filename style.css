@@ -103,6 +103,21 @@ header .container {
     color: #32325d;
 }
 
+.languages {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.languages span {
+    font-size: 1.4rem;
+    color: #32325d;
+    cursor: pointer;
+}
+
+.languages span.active {
+    font-weight: 600;
+}
+
 /* BODY */
 /* BANNER */
 .banner {
