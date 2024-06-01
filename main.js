@@ -37,6 +37,8 @@ const projectTitle = $('.projects .header__title');
 const footerTitle = $('.footer__title');
 const projectList = $$('.project__item');
 
+tippy('[data-tippy-content]');
+
 vietnameseBtn.addEventListener('click', () => changeLng('vi'));
 englishBtn.addEventListener('click', () => changeLng('en'));
 
@@ -69,12 +71,16 @@ function updateContent() {
 
     projectList.forEach((project) => {
         const name = project.getAttribute('data-project');
+        const titleElement = project.querySelector('.project__item__title');
+        const descElement = project.querySelector('.project__item__desc');
 
-        project.querySelector('.project__item__title').innerHTML = i18next.t(
-            `project${name}Title`,
-        );
-        project.querySelector('.project__item__desc').innerHTML = i18next.t(
-            `project${name}Description`,
+        titleElement.innerHTML = i18next.t(`project${name}Title`);
+        descElement.innerHTML = i18next.t(`project${name}Description`);
+        descElement.setAttribute(
+            'data-tippy-content',
+            i18next.t(`project${name}Description`),
         );
     });
+
+    tippy('[data-tippy-content]');
 }

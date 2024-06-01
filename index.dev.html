@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hà Anh Thảo - Frontend Developer | React.js, Node.js, Express, Cloud Technologies</title>
+    <meta name="description"
+        content="Hà Anh Thảo - FE Dev. Experienced in React.js, Node.js, Express, and Cloud Technologies. Explore my projects and resume.">
+    <meta name="keywords"
+        content="Hà Anh Thảo, FE Dev, Frontend, Developer, React.js, Node.js, Express, Cloud Technologies, web developer, AWS, Docker">
+    <meta name="author" content="Hà Anh Thảo">
+
+    <meta property="og:title" content="Hà Anh Thảo - Frontend Developer">
+    <meta property="og:description" content="Experienced in React.js, Node.js, Express, and Cloud Technologies.">
+    <meta property="og:image" content="http://portfolio.iuh-mern.id.vn/assets/images/portfolio-project.webp">
+    <meta property="og:url" content="http://portfolio.iuh-mern.id.vn/">
+    <meta property="og:type" content="website">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hà Anh Thảo - Frontend Developer">
+    <meta name="twitter:description" content="Experienced in React.js, Node.js, Express, and Cloud Technologies.">
+    <meta name="twitter:image" content="http://portfolio.iuh-mern.id.vn/assets/images/portfolio-project.webp">
+
+    <link rel="icon" href="./assets/html.ico" type="image/x-icon">
+    <link rel="canonical" href="http://portfolio.iuh-mern.id.vn/">
+    <link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css" />
+    <link rel="stylesheet" href="./style.min.css">
+
+    <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Person",
+          "name": "Hà Anh Thảo",
+          "jobTitle": "Frontend Developer",
+          "description": "Experienced in React.js, Node.js, Express, and Cloud Technologies.",
+          "url": "http://portfolio.iuh-mern.id.vn",
+          "email": "anhthaodev@gmail.com",
+          "sameAs": [
+            "https://www.linkedin.com/in/thaoanhhaa1/",
+            "https://github.com/thaoanhhaa1",
+            "https://www.instagram.com/thaoanhhaa1"
+          ],
+          "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Industrial University of Ho Chi Minh City"
+          }
+        }
+    </script>
+    <script src="https://unpkg.com/i18next/i18next.min.js"></script>
+    <script src="https://unpkg.com/i18next-http-backend/i18nextHttpBackend.min.js"></script>
+    <script src="https://unpkg.com/i18next-browser-languagedetector/i18nextBrowserLanguageDetector.min.js"></script>
+</head>
+
+<body>
+    <main>
+        <header>
+            <div class="container">
+                <h2 class="logo">
+                    <a href="/" class="logo__link">HaAnhThao</a>
+                </h2>
+                <div>
+                    <div class="languages">
+                        <span class="vietnamese">Tiếng Việt</span>
+                        <span class="english active">English</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <section>
+            <div class="banner">
+                <div class="banner__shape liner-bg">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+
+                <div class="container">
+                    <div class="banner__content">
+                        <h1 class="banner__title">Hi all, I'm Ha Anh Thao</h1>
+                        <p class="banner__desc">I am a passionate web developer with experience developing web
+                            applications with React.js, Nodejs, Express and Cloud Technologies. I'm really interested in
+                            learning new technologies and implementing them in my projects. I am a motivated and
+                            hard-working individual, always willing to learn new things and work in a team.</p>
+
+                        <div class="banner__contacts">
+                            <a data-tippy-content="Mail" href="mailto:anhthaodev@gmail.com"
+                                class="banner__contact__item banner__contact__item--mail">
+                                <img src="./assets/svgs/mail.svg" alt="">
+                            </a>
+                            <a data-tippy-content="Linkedin" target="_blank"
+                                href="https://www.linkedin.com/in/thaoanhhaa1/"
+                                class="banner__contact__item banner__contact__item--linkedin">
+                                <img src="./assets/svgs/logo-linkedin.svg" alt="">
+                            </a>
+                            <a data-tippy-content="Github" target="_blank" href="https://github.com/thaoanhhaa1"
+                                class="banner__contact__item banner__contact__item--github">
+                                <img src="./assets/svgs/logo-github.svg" alt="">
+                            </a>
+                            <a data-tippy-content="Instagram" href="https://www.instagram.com/thaoanhhaa1"
+                                target="_blank" class="banner__contact__item banner__contact__item--instagram">
+                                <img src="./assets/svgs/logo-instagram.svg" alt="">
+                            </a>
+                        </div>
+
+                        <a class="banner__resume-btn" href="./assets/Ha-Anh-Thao-CV.pdf" target="_blank">
+                            <img src="./assets/svgs/file.svg" alt="">
+                            <span>View my resume</span>
+                        </a>
+                    </div>
+                    <div class="banner__img">
+                        <img src="./assets/svgs/banner.svg" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="tech-stack container">
+                <div class="tech-stack__img">
+                    <img src="./assets/svgs/stack.svg" alt="">
+                </div>
+                <div class="tech-stack__content">
+                    <h2 class="tech-stack__title">
+                        Tech Stack
+                    </h2>
+                    <p class="tech-stack__desc">
+                        A list of my favorite tools and technologies that I use on a regular basis.
+                    </p>
+                    <div class="tech-stack__list">
+                        <div data-tippy-content="React" class="tech-stack__item">
+                            <img src="./assets/svgs/react.svg" alt="react">
+                        </div>
+                        <div data-tippy-content="Redux" class="tech-stack__item">
+                            <img src="./assets/svgs/redux.svg" alt="redux">
+                        </div>
+                        <div data-tippy-content="Node" class="tech-stack__item">
+                            <img src="./assets/svgs/node.svg" alt="node">
+                        </div>
+                        <div data-tippy-content="Express" class="tech-stack__item">
+                            <img src="./assets/svgs/express.svg" alt="express">
+                        </div>
+                        <div data-tippy-content="Swagger" class="tech-stack__item">
+                            <img src="./assets/svgs/swagger.svg" alt="swagger">
+                        </div>
+                        <div data-tippy-content="MongoDB" class="tech-stack__item">
+                            <img src="./assets/svgs/mongodb.svg" alt="MongoDB">
+                        </div>
+                        <div data-tippy-content="Typescript" class="tech-stack__item">
+                            <img src="./assets/svgs/typescript.svg" alt="typescript">
+                        </div>
+                        <div data-tippy-content="Aws" class="tech-stack__item">
+                            <img src="./assets/svgs/aws.svg" alt="aws">
+                        </div>
+                        <div data-tippy-content="Docker" class="tech-stack__item">
+                            <img src="./assets/svgs/docker.svg" alt="docker">
+                        </div>
+                        <div data-tippy-content="Figma" class="tech-stack__item">
+                            <img src="./assets/svgs/figma.svg" alt="figma">
+                        </div>
+                    </div>
+
+                    <a class="tech-stack__btn" target="_blank" href="https://github.com/thaoanhhaa1">
+                        <span>See full my tech</span>
+                        <img src="./assets/svgs/arrow-top-right-on-square.svg" alt="">
+                    </a>
+                </div>
+            </div>
+
+            <div class="education liner-bg">
+                <div class="container">
+                    <div class="header">
+                        <div class="header__img">
+                            <img src="./assets/images/graduation.webp" alt="">
+                        </div>
+                        <h2 class="header__title">EDUCATION</h2>
+                    </div>
+                    <div class="content">
+                        <div class="content__item">
+                            <h4 class="content__item__title">Industrial University of Ho Chi Minh City</h4>
+                            <p class="content__item__desc">software engineer</p>
+                            <div class="content__item__details">
+                                <span class="content__item__detail content__item__detail--duration">October 2020 -
+                                    current</span>
+                                <span class="content__item__detail content__item__detail--grade">GRADE A</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="projects">
+                <div class="container">
+                    <div class="header">
+                        <div class="header__img">
+                            <img src="./assets/images/programming.webp" alt="">
+                        </div>
+                        <h2 class="header__title">Projects</h2>
+                    </div>
+                    <div class="project__list">
+                        <div data-project="Chat" class="project__item">
+                            <div class="project__item__img">
+                                <img src="./assets/images/chat-app-project.webp" alt="">
+                            </div>
+                            <div class="project__item__content">
+                                <h4 class="project__item__title">Lola - Chat web</h4>
+                                <p class="project__item__desc line-clamp-3">The website allows users to chat 1-1, chat
+                                    in groups, manage groups, manage friends, and manage personal information. Users can
+                                    send stickers, emoji, location, files, images, videos, preview files, preview
+                                    links,...</p>
+                                <div class="project__item__techs">
+                                    <img src="./assets/svgs/react.svg" alt="React" data-tippy-content="React"
+                                        class="project__item__tech">
+                                    <img src="./assets/svgs/redux.svg" alt="Redux" data-tippy-content="Redux"
+                                        class="project__item__tech">
+                                    <img src="./assets/svgs/agora.svg" alt="Agora" data-tippy-content="Agora"
+                                        class="project__item__tech">
+                                    <img src="./assets/svgs/socket.svg" alt="Socket" data-tippy-content="Socket"
+                                        class="project__item__tech">
+                                    <img src="./assets/svgs/node.svg" alt="Node" data-tippy-content="Node"
+                                        class="project__item__tech">
+                                    <img src="./assets/svgs/express.svg" alt="Express" data-tippy-content="Express"
+                                        class="project__item__tech">
+                                    <img src="./assets/svgs/mongodb.svg" alt="MongoDB" data-tippy-content="MongoDB"
+                                        class="project__item__tech">
+                                    <img src="./assets/svgs/google-map.svg" alt="Google Maps API"
+                                        data-tippy-content="Google Maps API" class="project__item__tech">
+                                </div>
+                            </div>
+                            <div class="project__item__footer">
+                                <a href="https://github.com/thaoanhhaa1/ChatApp-CNM-web" target="_blank"
+                                    class="project__item__view">
+                                    <img src="./assets/svgs/logo-github.svg" alt="">
+                                    <span>FE</span>
+                                </a>
+                                <a href="https://github.com/Vu14082002/chat-app-cnm-be" target="_blank"
+                                    class="project__item__view">
+                                    <img src="./assets/svgs/logo-github.svg" alt="">
+                                    <span>BE</span>
+                                </a>
+                                <a href="https://chat-app-cnm-web.vercel.app/" target="_blank"
+                                    class="project__item__view project__item__view--demo">
+                                    <img src="./assets/images/right-arrow.webp" alt="">
+                                    <span>DEMO</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div data-project="Movie" class="project__item">
+                            <div class="project__item__img">
+                                <img src="./assets/images/movie-project.webp" alt="">
+                            </div>
+                            <div class="project__item__content">
+                                <h4 class="project__item__title">WMovies - View Movie</h4>
+                                <p class="project__item__desc line-clamp-3">The website allows users to watch movies,
+                                    manage favorite movies, manage personal information, save recently watched movies,
+                                    and log in with a google account.</p>
+                                <div class="project__item__techs">
+                                    <img src="./assets/svgs/react.svg" data-tippy-content="React" alt="React"
+                                        class="project__item__tech">
+                                    <img src="./assets/svgs/firebase.svg" data-tippy-content="Firebase" alt="Firebase"
+                                        class="project__item__tech">
+                                    <img src="./assets/svgs/node.svg" data-tippy-content="Node" alt="Node"
+                                        class="project__item__tech">
+                                    <img src="./assets/svgs/express.svg" data-tippy-content="Express" alt="Express"
+                                        class="project__item__tech">
+                                    <img src="./assets/svgs/the-movie-db.svg" data-tippy-content="TheMovieDb"
+                                        alt="TheMovieDb" class="project__item__tech">
+                                    <img src="./assets/svgs/mongodb.svg" data-tippy-content="MongoDB" alt="MongoDB"
+                                        class="project__item__tech">
+                                </div>
+                            </div>
+                            <div class="project__item__footer">
+                                <a href="https://github.com/thaoanhhaa1/MERN-Movies-Project-Client" target="_blank"
+                                    class="project__item__view">
+                                    <img src="./assets/svgs/logo-github.svg" alt="">
+                                    <span>FE</span>
+                                </a>
+                                <a href="https://github.com/thaoanhhaa1/MERN-Movies-Project-Server" target="_blank"
+                                    class="project__item__view">
+                                    <img src="./assets/svgs/logo-github.svg" alt="">
+                                    <span>BE</span>
+                                </a>
+                                <a href="https://wmovies.iuh-mern.id.vn/" target="_blank"
+                                    class="project__item__view project__item__view--demo">
+                                    <img src="./assets/images/right-arrow.webp" alt="">
+                                    <span>DEMO</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div data-project="Portfolio" class="project__item">
+                            <div class="project__item__img">
+                                <img src="./assets/images/portfolio-project.webp" alt="">
+                            </div>
+                            <div class="project__item__content">
+                                <h4 class="project__item__title">Portfolio - Personal Website</h4>
+                                <p class="project__item__desc line-clamp-3">The website introduces information about me,
+                                    my resume, my projects, my tech stack, and how to contact me.</p>
+                                <div class="project__item__techs">
+                                    <img src="./assets/svgs/html.svg" alt="HTML" data-tippy-content="HTML"
+                                        class="project__item__tech">
+                                    <img src="./assets/svgs/css.svg" alt="CSS" data-tippy-content="CSS"
+                                        class="project__item__tech">
+                                    <img src="./assets/svgs/js.svg" alt="Javascript" data-tippy-content="Javascript"
+                                        class="project__item__tech">
+                                    <img src="./assets/svgs/i18next.svg" alt="I18next" data-tippy-content="I18next"
+                                        class="project__item__tech">
+                                </div>
+                            </div>
+                            <div class="project__item__footer">
+                                <a href="https://github.com/thaoanhhaa1/portfolio" target="_blank"
+                                    class="project__item__view">
+                                    <img src="./assets/svgs/logo-github.svg" alt="">
+                                    <span>FE</span>
+                                </a>
+                                <a href="https://thaoanhhaa1.github.io/portfolio/" target="_blank"
+                                    class="project__item__view project__item__view--demo">
+                                    <img src="./assets/images/right-arrow.webp" alt="">
+                                    <span>DEMO</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="liner-bg">
+            <div class="container">
+                <h4 class="footer__title">Reach Out to me!</h4>
+
+                <div class="banner__contacts">
+                    <a href="mailto:anhthaodev@gmail.com" class="banner__contact__item banner__contact__item--mail">
+                        <img src="./assets/svgs/mail.svg" alt="">
+                    </a>
+                    <a target="_blank" href="https://www.linkedin.com/in/thaoanhhaa1/"
+                        class="banner__contact__item banner__contact__item--linkedin">
+                        <img src="./assets/svgs/logo-linkedin.svg" alt="">
+                    </a>
+                    <a target="_blank" href="https://github.com/thaoanhhaa1"
+                        class="banner__contact__item banner__contact__item--github">
+                        <img src="./assets/svgs/logo-github.svg" alt="">
+                    </a>
+                    <a href="https://www.instagram.com/thaoanhhaa1" target="_blank"
+                        class="banner__contact__item banner__contact__item--instagram">
+                        <img src="./assets/svgs/logo-instagram.svg" alt="">
+                    </a>
+                </div>
+            </div>
+        </footer>
+
+        <script src="https://unpkg.com/@popperjs/core@2"></script>
+        <script src="https://unpkg.com/tippy.js@6"></script>
+        <script src="./main.min.js"></script>
+    </main>
+</body>
+
+</html>
