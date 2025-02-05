@@ -542,6 +542,10 @@ header .container {
     color: #fff;
 }
 
+.projects .tech-stack__btn {
+    margin-top: 1.2rem;
+}
+
 /* Footer */
 footer {
     padding-block: 9.6rem;
