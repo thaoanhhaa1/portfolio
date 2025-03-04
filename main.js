@@ -97,6 +97,16 @@ window.addEventListener('scroll', () => {
 
 // Xử lý scroll to top button
 const scrollToTop = document.querySelector('.scroll-to-top');
+
+// Cập nhật HTML của nút
+scrollToTop.innerHTML = `
+    <div class="arrow-top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </div>
+`;
+
 window.addEventListener('scroll', () => {
     if (window.scrollY > 300) {
         scrollToTop.classList.add('visible');
@@ -105,7 +115,18 @@ window.addEventListener('scroll', () => {
     }
 });
 
-scrollToTop.addEventListener('click', () => {
+scrollToTop.addEventListener('click', (e) => {
+    // Tạo hiệu ứng ripple
+    const ripple = document.createElement('span');
+    ripple.classList.add('ripple');
+    scrollToTop.appendChild(ripple);
+
+    // Xóa ripple sau khi animation hoàn thành
+    setTimeout(() => {
+        ripple.remove();
+    }, 1000);
+
+    // Scroll to top với animation
     window.scrollTo({
         top: 0,
         behavior: 'smooth',
@@ -135,7 +156,7 @@ document.querySelectorAll('.header').forEach((header) => {
     observer.observe(header);
 });
 
-// Thêm hiệu ứng particles cho background
+// Nâng cấp hiệu ứng particles cho background
 function initParticles() {
     const particlesContainer = document.createElement('div');
     particlesContainer.id = 'particles-js';
@@ -156,13 +177,34 @@ function initParticles() {
             particlesJS('particles-js', {
                 particles: {
                     number: {
-                        value: 80,
+                        value: 100,
                         density: { enable: true, value_area: 800 },
                     },
-                    color: { value: '#11cdef' },
-                    shape: { type: 'circle' },
-                    opacity: { value: 0.5, random: false },
-                    size: { value: 3, random: true },
+                    color: { value: ['#11cdef', '#1171ef', '#32325d'] },
+                    shape: {
+                        type: ['circle', 'triangle', 'polygon'],
+                        polygon: { nb_sides: 6 },
+                    },
+                    opacity: {
+                        value: 0.6,
+                        random: true,
+                        anim: {
+                            enable: true,
+                            speed: 1,
+                            opacity_min: 0.1,
+                            sync: false,
+                        },
+                    },
+                    size: {
+                        value: 5,
+                        random: true,
+                        anim: {
+                            enable: true,
+                            speed: 2,
+                            size_min: 0.1,
+                            sync: false,
+                        },
+                    },
                     line_linked: {
                         enable: true,
                         distance: 150,
@@ -174,114 +216,369 @@ function initParticles() {
                         enable: true,
                         speed: 2,
                         direction: 'none',
-                        random: false,
+                        random: true,
                         straight: false,
                         out_mode: 'out',
                         bounce: false,
+                        attract: { enable: true, rotateX: 600, rotateY: 1200 },
                     },
                 },
                 interactivity: {
                     detect_on: 'canvas',
                     events: {
-                        onhover: { enable: true, mode: 'grab' },
+                        onhover: { enable: true, mode: 'bubble' },
                         onclick: { enable: true, mode: 'push' },
                         resize: true,
                     },
                     modes: {
-                        grab: { distance: 140, line_linked: { opacity: 1 } },
+                        grab: { distance: 400, line_linked: { opacity: 1 } },
+                        bubble: {
+                            distance: 200,
+                            size: 6,
+                            duration: 2,
+                            opacity: 0.8,
+                            speed: 3,
+                        },
+                        repulse: { distance: 200, duration: 0.4 },
                         push: { particles_nb: 4 },
+                        remove: { particles_nb: 2 },
                     },
                 },
                 retina_detect: true,
             });
         };
         document.body.appendChild(script);
-    } else {
-        particlesJS('particles-js', {
-            // Cấu hình tương tự như trên
-        });
     }
 }
 
-// Thêm hiệu ứng typing cho banner title
+// Nâng cấp hiệu ứng typing cho banner title
 function initTypingEffect() {
     const bannerTitle = document.querySelector('.banner__title');
+    if (!bannerTitle) return;
+
     const originalText = bannerTitle.textContent;
-    bannerTitle.textContent = '';
+    bannerTitle.innerHTML =
+        '<span class="typing-text"></span><span class="typing-cursor">|</span>';
+    const typingText = bannerTitle.querySelector('.typing-text');
 
     let i = 0;
+    const typingSpeed = 80; // ms per character
     const typingEffect = setInterval(() => {
         if (i < originalText.length) {
-            bannerTitle.textContent += originalText.charAt(i);
+            typingText.textContent += originalText.charAt(i);
             i++;
         } else {
             clearInterval(typingEffect);
-            // Thêm cursor nhấp nháy
-            const cursor = document.createElement('span');
-            cursor.className = 'typing-cursor';
-            cursor.textContent = '|';
-            bannerTitle.appendChild(cursor);
+            // Thêm hiệu ứng highlight cho một số từ quan trọng
+            setTimeout(() => {
+                const highlightWords = ['developer', 'Ha Anh Thao'];
+                let newText = typingText.textContent;
+
+                highlightWords.forEach((word) => {
+                    const regex = new RegExp(word, 'gi');
+                    newText = newText.replace(
+                        regex,
+                        `<span class="highlight-text">${word}</span>`,
+                    );
+                });
+
+                typingText.innerHTML = newText;
+            }, 500);
         }
-    }, 100);
+    }, typingSpeed);
 }
 
-// Thêm hiệu ứng parallax cho các phần tử
-function initParallaxEffect() {
+// Thêm hiệu ứng 3D tilt cho các phần tử
+function initTiltEffect() {
+    // Tải thư viện vanilla-tilt.js
+    const tiltScript = document.createElement('script');
+    tiltScript.src =
+        'https://unpkg.com/vanilla-tilt@1.7.0/dist/vanilla-tilt.min.js';
+    tiltScript.onload = () => {
+        // Áp dụng hiệu ứng tilt cho project cards
+        VanillaTilt.init(document.querySelectorAll('.project__item'), {
+            max: 10,
+            speed: 400,
+            glare: true,
+            'max-glare': 0.3,
+            scale: 1.05,
+        });
+
+        // Áp dụng hiệu ứng tilt cho tech stack items
+        VanillaTilt.init(document.querySelectorAll('.tech-stack__item'), {
+            max: 25,
+            speed: 300,
+            glare: true,
+            'max-glare': 0.5,
+            scale: 1.1,
+        });
+
+        // Áp dụng hiệu ứng tilt cho banner image
+        VanillaTilt.init(document.querySelector('.banner__img'), {
+            max: 15,
+            speed: 400,
+            glare: false,
+            scale: 1.05,
+        });
+    };
+    document.head.appendChild(tiltScript);
+}
+
+// Thêm hiệu ứng parallax nâng cao
+function initAdvancedParallax() {
+    // Tạo các phần tử trang trí cho banner
+    const createDecoElements = () => {
+        const banner = document.querySelector('.banner');
+        if (!banner) return;
+
+        const decoContainer = document.createElement('div');
+        decoContainer.className = 'banner-deco-container';
+
+        // Tạo 15 phần tử trang trí với hình dạng và màu sắc khác nhau
+        for (let i = 0; i < 15; i++) {
+            const deco = document.createElement('div');
+            deco.className = 'banner-deco';
+
+            // Ngẫu nhiên hình dạng: circle, square, triangle
+            const shapes = ['circle', 'square', 'triangle'];
+            const shape = shapes[Math.floor(Math.random() * shapes.length)];
+            deco.classList.add(`shape-${shape}`);
+
+            // Ngẫu nhiên kích thước
+            const size = Math.floor(Math.random() * 30) + 10; // 10px to 40px
+            deco.style.width = `${size}px`;
+            deco.style.height = `${size}px`;
+
+            // Ngẫu nhiên vị trí
+            deco.style.left = `${Math.random() * 100}%`;
+            deco.style.top = `${Math.random() * 100}%`;
+
+            // Ngẫu nhiên màu sắc
+            const colors = [
+                '#11cdef',
+                '#1171ef',
+                '#32325d',
+                'rgba(255,255,255,0.3)',
+            ];
+            deco.style.backgroundColor =
+                colors[Math.floor(Math.random() * colors.length)];
+
+            // Ngẫu nhiên độ trễ animation
+            deco.style.animationDelay = `${Math.random() * 5}s`;
+
+            decoContainer.appendChild(deco);
+        }
+
+        banner.appendChild(decoContainer);
+    };
+
+    createDecoElements();
+
+    // Hiệu ứng parallax khi di chuyển chuột
     window.addEventListener('mousemove', (e) => {
         const x = e.clientX / window.innerWidth;
         const y = e.clientY / window.innerHeight;
 
-        // Parallax cho banner image
+        // Parallax cho các phần tử trang trí
+        document.querySelectorAll('.banner-deco').forEach((deco, index) => {
+            const factor = ((index % 5) + 1) * 10;
+            deco.style.transform = `translate(${x * factor - factor / 2}px, ${
+                y * factor - factor / 2
+            }px)`;
+        });
+
+        // Parallax cho banner image với hiệu ứng sâu hơn
         const bannerImg = document.querySelector('.banner__img img');
         if (bannerImg) {
-            bannerImg.style.transform = `translate(${x * 20 - 10}px, ${
-                y * 20 - 10
-            }px)`;
+            bannerImg.style.transform = `translate(${x * 30 - 15}px, ${
+                y * 30 - 15
+            }px) rotate(${x * 5}deg)`;
         }
 
         // Parallax cho tech stack image
         const techStackImg = document.querySelector('.tech-stack__img img');
         if (techStackImg) {
-            techStackImg.style.transform = `translate(${x * 15 - 7.5}px, ${
-                y * 15 - 7.5
-            }px)`;
+            techStackImg.style.transform = `translate(${x * 20 - 10}px, ${
+                y * 20 - 10
+            }px) rotate(${y * 5}deg)`;
         }
-
-        // Parallax cho các shape trong banner
-        document
-            .querySelectorAll('.banner__shape span')
-            .forEach((span, index) => {
-                const factor = ((index % 3) + 1) * 5;
-                span.style.transform = `translate(${
-                    x * factor - factor / 2
-                }px, ${y * factor - factor / 2}px)`;
-            });
     });
 }
 
-// Thêm hiệu ứng hover 3D cho project cards
-function init3DCardEffect() {
-    document.querySelectorAll('.project__item').forEach((card) => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-
-            const rotateX = (y - centerY) / 20;
-            const rotateY = (centerX - x) / 20;
-
-            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-            card.style.transition = 'transform 0.1s ease';
+// Thêm hiệu ứng scroll reveal nâng cao
+function initAdvancedScrollReveal() {
+    // Tải ScrollReveal từ CDN
+    const srScript = document.createElement('script');
+    srScript.src =
+        'https://unpkg.com/scrollreveal@4.0.9/dist/scrollreveal.min.js';
+    srScript.onload = () => {
+        // Cấu hình cơ bản
+        const sr = ScrollReveal({
+            origin: 'bottom',
+            distance: '50px',
+            duration: 1000,
+            delay: 200,
+            easing: 'cubic-bezier(0.5, 0, 0, 1)',
+            reset: false,
         });
 
-        card.addEventListener('mouseleave', () => {
-            card.style.transform =
-                'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-            card.style.transition = 'transform 0.5s ease';
+        // Áp dụng cho các phần tử khác nhau với cấu hình khác nhau
+        sr.reveal('.banner__content', {
+            origin: 'left',
+            distance: '100px',
+            duration: 1200,
+            delay: 300,
         });
+
+        sr.reveal('.banner__img', {
+            origin: 'right',
+            distance: '100px',
+            duration: 1200,
+            delay: 500,
+        });
+
+        sr.reveal('.tech-stack__content', {
+            origin: 'right',
+            distance: '80px',
+            duration: 1000,
+        });
+
+        sr.reveal('.tech-stack__img', {
+            origin: 'left',
+            distance: '80px',
+            duration: 1000,
+        });
+
+        sr.reveal('.header', {
+            origin: 'top',
+            distance: '50px',
+            duration: 800,
+        });
+
+        sr.reveal('.project__item', {
+            origin: 'bottom',
+            distance: '50px',
+            duration: 800,
+            interval: 200, // Mỗi item hiện lên cách nhau 200ms
+        });
+
+        sr.reveal('.content__item', {
+            origin: 'bottom',
+            distance: '30px',
+            duration: 800,
+        });
+
+        sr.reveal('.footer__title', {
+            origin: 'bottom',
+            distance: '30px',
+            duration: 800,
+        });
+
+        sr.reveal('.banner__contacts', {
+            origin: 'bottom',
+            distance: '30px',
+            duration: 800,
+            delay: 400,
+        });
+    };
+    document.head.appendChild(srScript);
+}
+
+// Thêm hiệu ứng gradient text và button
+function initGradientEffects() {
+    // Thêm class gradient-text cho các tiêu đề
+    document
+        .querySelectorAll(
+            '.header__title, .banner__title, .tech-stack__title, .footer__title',
+        )
+        .forEach((el) => {
+            el.classList.add('gradient-text');
+        });
+
+    // Thêm class gradient-button cho các nút
+    document
+        .querySelectorAll(
+            '.banner__resume-btn, .tech-stack__btn, .project__item__view--demo',
+        )
+        .forEach((el) => {
+            el.classList.add('gradient-button');
+        });
+}
+
+// Thêm hiệu ứng hover nâng cao cho các liên kết
+function initAdvancedHoverEffects() {
+    // Thêm hiệu ứng hover cho các liên kết mạng xã hội
+    document.querySelectorAll('.banner__contact__item').forEach((item) => {
+        item.addEventListener('mouseenter', function () {
+            this.classList.add('contact-hover');
+
+            // Tạo hiệu ứng ripple
+            const ripple = document.createElement('span');
+            ripple.className = 'ripple-effect';
+            this.appendChild(ripple);
+
+            setTimeout(() => {
+                ripple.remove();
+            }, 1000);
+        });
+
+        item.addEventListener('mouseleave', function () {
+            this.classList.remove('contact-hover');
+        });
+    });
+}
+
+// Thêm hiệu ứng preloader
+function initPreloader() {
+    // Tạo preloader
+    const preloader = document.createElement('div');
+    preloader.className = 'preloader';
+    preloader.innerHTML = `
+        <div class="preloader-content">
+            <div class="preloader-spinner"></div>
+            <div class="preloader-text">Loading<span class="dot-animation">.</span><span class="dot-animation">.</span><span class="dot-animation">.</span></div>
+        </div>
+    `;
+    document.body.prepend(preloader);
+
+    // Ẩn preloader sau khi trang đã tải xong
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            preloader.classList.add('preloader-hidden');
+            setTimeout(() => {
+                preloader.remove();
+            }, 1000);
+        }, 1000);
+    });
+}
+
+// Thêm hiệu ứng neon glow cho các phần tử
+function initNeonEffect() {
+    // Thêm class neon-glow cho các phần tử cần hiệu ứng
+    document
+        .querySelectorAll('.tech-stack__item, .project__item__tech')
+        .forEach((el) => {
+            el.classList.add('neon-glow');
+        });
+}
+
+// Thêm hiệu ứng background wave
+function initBackgroundWave() {
+    const waveContainer = document.createElement('div');
+    waveContainer.className = 'wave-container';
+    waveContainer.innerHTML = `
+        <div class="wave wave1"></div>
+        <div class="wave wave2"></div>
+        <div class="wave wave3"></div>
+        <div class="wave wave4"></div>
+    `;
+
+    // Thêm vào các phần có background gradient
+    document.querySelectorAll('.liner-bg').forEach((el, index) => {
+        // if (!index) return;
+
+        const waveClone = waveContainer.cloneNode(true);
+        el.appendChild(waveClone);
     });
 }
 
@@ -469,21 +766,20 @@ function initCounters() {
 }
 
 // Khởi tạo tất cả hiệu ứng khi trang đã tải xong
-window.addEventListener('load', () => {
+window.addEventListener('DOMContentLoaded', () => {
+    initPreloader();
     initParticles();
     initTypingEffect();
-    initParallaxEffect();
-    init3DCardEffect();
+    initTiltEffect();
+    initAdvancedParallax();
+    initAdvancedScrollReveal();
+    initGradientEffects();
+    initAdvancedHoverEffects();
+    initNeonEffect();
+    initBackgroundWave();
     initProgressBar();
     initSkillBars();
     // initCounters();
-
-    // Thêm animation cho các phần tử khi scroll
-    AOS.init({
-        duration: 800,
-        easing: 'ease-in-out',
-        once: true,
-    });
 });
 
 // Thêm AOS library

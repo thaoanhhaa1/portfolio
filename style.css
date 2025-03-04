@@ -91,14 +91,14 @@ body {
     transform: scale(1.05);
 }
 
-/* Nút scroll to top */
+/* Nút scroll to top nâng cấp */
 .scroll-to-top {
     position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-    background: #11cdef;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #11cdef, #1171ef);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -106,18 +106,95 @@ body {
     cursor: pointer;
     opacity: 0;
     visibility: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     z-index: 999;
+    box-shadow: 0 5px 20px rgba(17, 205, 239, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    overflow: hidden;
+    transform: translateY(20px) scale(0.9);
 }
 
 .scroll-to-top.visible {
     opacity: 1;
     visibility: visible;
+    transform: translateY(0) scale(1);
 }
 
 .scroll-to-top:hover {
-    background: #1171ef;
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 10px 25px rgba(17, 205, 239, 0.5);
+}
+
+.scroll-to-top:active {
+    transform: translateY(0) scale(0.95);
+}
+
+.scroll-to-top::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #1171ef, #11cdef);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-to-top:hover::before {
+    opacity: 1;
+}
+
+.scroll-to-top svg {
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+}
+
+.scroll-to-top:hover svg {
     transform: translateY(-3px);
+}
+
+.scroll-to-top .arrow-top {
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+.scroll-to-top .ripple {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple-animation 1s ease-out;
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* Animation khi nút xuất hiện */
+@keyframes bounce-in {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.5);
+    }
+    50% {
+        opacity: 1;
+        transform: translateY(-10px) scale(1.05);
+    }
+    100% {
+        transform: translateY(0) scale(1);
+    }
+}
+
+.scroll-to-top.visible {
+    animation: bounce-in 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
 /* Animation cho các section headers */
@@ -138,6 +215,7 @@ body {
 }
 
 .liner-bg {
+    position: relative;
     background: linear-gradient(35deg, #11cdef, #1171ef);
 }
 
@@ -892,5 +970,482 @@ footer {
 
     .stats-container {
         grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+/* Preloader */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(35deg, #11cdef, #1171ef);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.preloader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-content {
+    text-align: center;
+}
+
+.preloader-spinner {
+    width: 60px;
+    height: 60px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #fff;
+    animation: spin 1s ease-in-out infinite;
+    margin: 0 auto 20px;
+}
+
+.preloader-text {
+    color: #fff;
+    font-size: 2.4rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.dot-animation {
+    animation: dotAnimation 1.5s infinite;
+    opacity: 0;
+}
+
+.dot-animation:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.dot-animation:nth-child(3) {
+    animation-delay: 1s;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes dotAnimation {
+    0%,
+    100% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+/* Banner decoration elements */
+.banner-deco-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.banner-deco {
+    position: absolute;
+    opacity: 0.5;
+    animation: float 10s ease-in-out infinite;
+}
+
+.shape-circle {
+    border-radius: 50%;
+}
+
+.shape-square {
+    border-radius: 4px;
+}
+
+.shape-triangle {
+    width: 0 !important;
+    height: 0 !important;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-bottom: 25px solid #11cdef;
+    background-color: transparent !important;
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-20px) rotate(10deg);
+    }
+}
+
+/* Gradient text */
+/* .gradient-text {
+    background: linear-gradient(90deg, #11cdef, #1171ef);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+} */
+
+/* Gradient buttons */
+.gradient-button {
+    background: linear-gradient(90deg, #11cdef, #1171ef);
+    border: none;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.gradient-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #1171ef, #11cdef);
+    transition: all 0.5s ease;
+    z-index: -1;
+}
+
+.gradient-button:hover::before {
+    width: 100%;
+}
+
+/* Ripple effect for contact items */
+.banner__contact__item {
+    position: relative;
+    overflow: hidden;
+}
+
+.contact-hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.ripple-effect {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    animation: ripple 1s ease-out;
+}
+
+@keyframes ripple {
+    to {
+        width: 200%;
+        height: 200%;
+        opacity: 0;
+    }
+}
+
+/* Neon glow effect */
+.neon-glow {
+    box-shadow: 0 0 10px rgba(17, 205, 239, 0.5);
+    transition: all 0.3s ease;
+}
+
+.neon-glow:hover {
+    box-shadow: 0 0 20px rgba(17, 205, 239, 0.8),
+        0 0 30px rgba(17, 113, 239, 0.6);
+}
+
+/* Highlight text in typing effect */
+.highlight-text {
+    color: #11cdef;
+    font-weight: 700;
+    position: relative;
+}
+
+.highlight-text::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #11cdef, #1171ef);
+    animation: highlightLine 1s ease forwards;
+    transform-origin: left;
+    transform: scaleX(0);
+}
+
+@keyframes highlightLine {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+/* Background wave effect */
+.wave-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 100px;
+    background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg"><path d="M0 0v46.29c47.79 22.2 103.59 32.17 158 28 70.36-5.37 136.33-33.31 206.8-37.5 73.84-4.36 147.54 16.88 218.2 35.26 69.27 18 138.3 24.88 209.4 13.08 36.15-6 69.85-17.84 104.45-29.34C989.49 25 1113-14.29 1200 52.47V0z" fill="%23ffffff" fill-opacity="0.1"/></svg>')
+        repeat-x;
+    background-size: 1200px 100px;
+    animation: wave 25s linear infinite;
+}
+
+.wave1 {
+    animation-delay: 0s;
+    z-index: 4;
+    opacity: 0.7;
+}
+
+.wave2 {
+    animation-delay: -5s;
+    z-index: 3;
+    opacity: 0.5;
+    animation-duration: 20s;
+}
+
+.wave3 {
+    animation-delay: -10s;
+    z-index: 2;
+    opacity: 0.3;
+    animation-duration: 15s;
+}
+
+.wave4 {
+    animation-delay: -15s;
+    z-index: 1;
+    opacity: 0.2;
+    animation-duration: 30s;
+}
+
+@keyframes wave {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Nâng cấp project cards */
+.project__item {
+    border-radius: 15px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transform-style: preserve-3d;
+}
+
+.project__item:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    transform: translateY(-10px);
+}
+
+.project__item__img {
+    overflow: hidden;
+    position: relative;
+}
+
+.project__item__img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+    );
+    transform: skewX(-25deg);
+    transition: all 0.75s ease;
+    z-index: 1;
+}
+
+.project__item:hover .project__item__img::before {
+    animation: shine 1.5s;
+}
+
+@keyframes shine {
+    100% {
+        left: 150%;
+    }
+}
+
+/* Nâng cấp tech stack items */
+.tech-stack__item {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.tech-stack__item::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(17, 205, 239, 0.3) 0%,
+        transparent 70%
+    );
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.tech-stack__item:hover {
+    transform: translateY(-10px) rotate(5deg);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.tech-stack__item:hover::before {
+    opacity: 1;
+    animation: rotate 10s linear infinite;
+}
+
+/* Nâng cấp skill bars */
+.skill-bar {
+    height: 1.2rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #11cdef, #1171ef);
+    border-radius: 1rem;
+    width: 0;
+    transition: width 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.skill-progress::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.4) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Nâng cấp stat items */
+.stat-item {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 3rem 2rem;
+    box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),
+        0 5px 15px rgba(0, 0, 0, 0.07);
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0) 50%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+    z-index: -1;
+}
+
+.stat-item:hover {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+}
+
+.stat-number {
+    font-size: 5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(90deg, #11cdef, #1171ef);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    position: relative;
+}
+
+.stat-number::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(90deg, #11cdef, #1171ef);
+    border-radius: 3px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .preloader-spinner {
+        width: 50px;
+        height: 50px;
+    }
+
+    .preloader-text {
+        font-size: 2rem;
+    }
+
+    .banner-deco {
+        display: none;
     }
 }
