@@ -16,8 +16,25 @@
     box-sizing: border-box;
 }
 
+/* Thêm smooth scroll behavior */
 html {
     font-size: 62.5%;
+    scroll-behavior: smooth;
+}
+
+/* Animation cho header khi scroll */
+header {
+    position: sticky;
+    top: 0px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.1);
+    z-index: 2;
+    transition: all 0.3s ease;
+}
+
+header.scrolled {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 body {
@@ -25,6 +42,92 @@ body {
     font-size: 1.6rem;
     line-height: 1.6;
     color: var(--text-primary);
+}
+
+/* Animation cho banner content */
+.banner__content {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover effect cho tech stack items */
+.tech-stack__item {
+    transition: all 0.3s ease;
+}
+
+.tech-stack__item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Animation cho project items */
+.project__item {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.project__item.visible {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Hover effect cho project images */
+.project__item__img {
+    overflow: hidden;
+}
+
+.project__item__img img {
+    transition: transform 0.5s ease;
+}
+
+.project__item:hover .project__item__img img {
+    transform: scale(1.05);
+}
+
+/* Nút scroll to top */
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: #11cdef;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 999;
+}
+
+.scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.scroll-to-top:hover {
+    background: #1171ef;
+    transform: translateY(-3px);
+}
+
+/* Animation cho các section headers */
+.header {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.header.visible {
+    animation: fadeInUp 0.8s ease forwards;
 }
 
 .container {
@@ -597,5 +700,197 @@ footer {
 @media screen and (max-width: 576px) {
     :root {
         --max-width: 540px;
+    }
+}
+
+/* Hiệu ứng typing cursor */
+.typing-cursor {
+    animation: blink 1s infinite;
+    font-weight: 100;
+}
+
+@keyframes blink {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+}
+
+/* Progress bar trên đầu trang */
+.page-progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #11cdef, #1171ef);
+    z-index: 9999;
+    width: 0%;
+    transition: width 0.2s ease;
+}
+
+/* Skill bars */
+.skills-section {
+    padding: 6.4rem 0;
+}
+
+.skills-container {
+    margin-top: 3.2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.4rem;
+}
+
+.skill-item {
+    margin-bottom: 2rem;
+}
+
+.skill-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    font-size: 1.6rem;
+    color: #525f7f;
+}
+
+.skill-bar {
+    height: 1rem;
+    background-color: #e9ecef;
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.skill-progress {
+    height: 100%;
+    background: linear-gradient(90deg, #11cdef, #1171ef);
+    border-radius: 1rem;
+    width: 0;
+    transition: width 1.5s ease-in-out;
+}
+
+/* Stats section */
+.stats-section {
+    padding: 6.4rem 0;
+    margin: 4.8rem 0;
+}
+
+.stats-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.4rem;
+    text-align: center;
+}
+
+.stat-item {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2.4rem;
+    border-radius: 0.8rem;
+    box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),
+        0 5px 15px rgba(0, 0, 0, 0.07);
+    transition: transform 0.3s ease;
+}
+
+.stat-item:hover {
+    transform: translateY(-10px);
+}
+
+.stat-icon {
+    margin-bottom: 1.6rem;
+}
+
+.stat-icon img {
+    width: 4.8rem;
+    height: 4.8rem;
+    object-fit: contain;
+}
+
+.stat-number {
+    font-size: 4.8rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    background: linear-gradient(90deg, #11cdef, #1171ef);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-title {
+    font-size: 1.8rem;
+    color: #fff;
+}
+
+/* Nâng cấp project cards */
+.project__item {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.5s ease;
+}
+
+.project__item:hover {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.project__item__content {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/* Nâng cấp tech stack items */
+.tech-stack__item {
+    background: rgba(255, 255, 255, 0.9);
+    transition: all 0.3s ease;
+}
+
+.tech-stack__item:hover {
+    transform: translateY(-10px) rotate(5deg);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Nâng cấp banner */
+.banner {
+    position: relative;
+    overflow: hidden;
+}
+
+.banner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(
+        circle,
+        rgba(17, 205, 239, 0.1) 0%,
+        transparent 70%
+    );
+    animation: rotate 30s linear infinite;
+    z-index: -1;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive cho stats và skills */
+@media screen and (max-width: 1024px) {
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 680px) {
+    .skills-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .stats-container {
+        grid-template-columns: repeat(1, 1fr);
     }
 }
